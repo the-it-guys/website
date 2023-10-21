@@ -1,14 +1,4 @@
-/**
-* Template Name: Squadfree
-* Updated: Sep 18 2023 with Bootstrap v5.3.2
-* Template URL: https://bootstrapmade.com/squadfree-free-bootstrap-template-creative/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 
-/*--------------------------------------------------------------
-# General
---------------------------------------------------------------*/
 body {
   font-family: "Poppins", sans-serif;
   color: #444444;
@@ -539,14 +529,18 @@ section {
 # Breadcrumbs
 --------------------------------------------------------------*/
 .breadcrumbs {
-  padding: 15px 0;
-  background-color: #f8fbfd;
+  padding: 100px 0;
+  background-color: #196ddc;
   min-height: 40px;
 }
 
 .breadcrumbs h2 {
   font-size: 24px;
   font-weight: 300;
+  color: #fff;
+}
+.breadcrumbs a {
+  color: #fff;
 }
 
 .breadcrumbs ol {
@@ -556,16 +550,18 @@ section {
   padding: 0;
   margin: 0;
   font-size: 14px;
+  color: #fff;
 }
 
 .breadcrumbs ol li + li {
   padding-left: 10px;
+  color: #fff;
 }
 
 .breadcrumbs ol li + li::before {
   display: inline-block;
   padding-right: 10px;
-  color: #6c757d;
+  color: #fff;
   content: "/";
 }
 
@@ -1697,4 +1693,11 @@ section {
   height: 46px;
   border: 1px solid #1067db;
   transition: 0.4s;
+}
+.serrv .icon{ margin-bottom: 30px;}
+.serrv .title a {
+  font-size: 17px;
+  color: #8c8e94;
+  font-weight: 400;
+  line-height: 28px;
 }
