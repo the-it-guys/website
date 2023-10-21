@@ -1,20 +1,7 @@
-/*!
-  * Bootstrap v5.3.2 (https://getbootstrap.com/)
-  * Copyright 2011-2023 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
-  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-  */
+
 import * as Popper from '@popperjs/core';
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap dom/data.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
 
-/**
- * Constants
- */
 
 const elementMap = new Map();
 const Data = {
@@ -53,12 +40,7 @@ const Data = {
   }
 };
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap util/index.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
+
 
 const MAX_UID = 1000000;
 const MILLISECONDS_MULTIPLIER = 1000;
@@ -300,17 +282,7 @@ const getNextActiveElement = (list, activeElement, shouldGetNext, isCycleAllowed
   return list[Math.max(0, Math.min(index, listLength - 1))];
 };
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap dom/event-handler.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
 
-
-/**
- * Constants
- */
 
 const namespaceRegex = /[^.]*(?=\..*)\.|.*/;
 const stripNameRegex = /\..*/;
@@ -522,12 +494,7 @@ function hydrateObj(obj, meta = {}) {
   return obj;
 }
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap dom/manipulator.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
+
 
 function normalizeData(value) {
   if (value === 'true') {
@@ -579,17 +546,7 @@ const Manipulator = {
   }
 };
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap util/config.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
 
-
-/**
- * Class definition
- */
 
 class Config {
   // Getters
@@ -632,23 +589,10 @@ class Config {
   }
 }
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap base-component.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
 
-
-/**
- * Constants
- */
 
 const VERSION = '5.3.2';
 
-/**
- * Class definition
- */
 
 class BaseComponent extends Config {
   constructor(element, config) {
@@ -701,27 +645,19 @@ class BaseComponent extends Config {
   }
 }
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap dom/selector-engine.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
+
 
 const getSelector = element => {
   let selector = element.getAttribute('data-bs-target');
   if (!selector || selector === '#') {
     let hrefAttribute = element.getAttribute('href');
 
-    // The only valid content that could double as a selector are IDs or classes,
-    // so everything starting with `#` or `.`. If a "real" URL is used as the selector,
-    // `document.querySelector` will rightfully complain it is invalid.
-    // See https://github.com/twbs/bootstrap/issues/32273
+   
     if (!hrefAttribute || !hrefAttribute.includes('#') && !hrefAttribute.startsWith('.')) {
       return null;
     }
 
-    // Just in case some CMS puts out a full URL with the anchor appended
+    
     if (hrefAttribute.includes('#') && !hrefAttribute.startsWith('#')) {
       hrefAttribute = `#${hrefAttribute.split('#')[1]}`;
     }
@@ -758,7 +694,7 @@ const SelectorEngine = {
     }
     return [];
   },
-  // TODO: this is now unused; remove later along with prev()
+ 
   next(element, selector) {
     let next = element.nextElementSibling;
     while (next) {
@@ -790,12 +726,7 @@ const SelectorEngine = {
   }
 };
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap util/component-functions.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
+
 
 const enableDismissTrigger = (component, method = 'hide') => {
   const clickEvent = `click.dismiss${component.EVENT_KEY}`;
@@ -810,22 +741,12 @@ const enableDismissTrigger = (component, method = 'hide') => {
     const target = SelectorEngine.getElementFromSelector(this) || this.closest(`.${name}`);
     const instance = component.getOrCreateInstance(target);
 
-    // Method argument is left, for Alert and only, as it doesn't implement the 'hide' method
+ 
     instance[method]();
   });
 };
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap alert.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
 
-
-/**
- * Constants
- */
 
 const NAME$f = 'alert';
 const DATA_KEY$a = 'bs.alert';
@@ -890,17 +811,7 @@ enableDismissTrigger(Alert, 'close');
 
 defineJQueryPlugin(Alert);
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap button.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
 
-
-/**
- * Constants
- */
 
 const NAME$e = 'button';
 const DATA_KEY$9 = 'bs.button';
@@ -948,23 +859,11 @@ EventHandler.on(document, EVENT_CLICK_DATA_API$6, SELECTOR_DATA_TOGGLE$5, event 
   data.toggle();
 });
 
-/**
- * jQuery
- */
+
 
 defineJQueryPlugin(Button);
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap util/swipe.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
 
-
-/**
- * Constants
- */
 
 const NAME$d = 'swipe';
 const EVENT_KEY$9 = '.bs.swipe';
@@ -1074,17 +973,7 @@ class Swipe extends Config {
   }
 }
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap carousel.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
 
-
-/**
- * Constants
- */
 
 const NAME$c = 'carousel';
 const DATA_KEY$8 = 'bs.carousel';
@@ -1177,9 +1066,7 @@ class Carousel extends BaseComponent {
     this._slide(ORDER_NEXT);
   }
   nextWhenVisible() {
-    // FIXME TODO use `document.visibilityState`
-    // Don't call next when the page isn't visible
-    // or the carousel or its parent isn't visible
+  
     if (!document.hidden && isVisible(this._element)) {
       this.next();
     }
@@ -1257,14 +1144,7 @@ class Carousel extends BaseComponent {
         return;
       }
 
-      // If it's a touch-enabled device, mouseenter/leave are fired as
-      // part of the mouse compatibility events on first tap - the carousel
-      // would stop cycling until user tapped out of it;
-      // here, we listen for touchend, explicitly pause the carousel
-      // (as if it's the second time we tap on it, mouseenter compat event
-      // is NOT fired) and after a timeout (to allow for mouse compatibility
-      // events to fire) we explicitly restart cycling
-
+     
       this.pause();
       if (this.touchTimeout) {
         clearTimeout(this.touchTimeout);
@@ -1447,17 +1327,7 @@ EventHandler.on(window, EVENT_LOAD_DATA_API$3, () => {
 
 defineJQueryPlugin(Carousel);
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap collapse.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
 
-
-/**
- * Constants
- */
 
 const NAME$b = 'collapse';
 const DATA_KEY$7 = 'bs.collapse';
@@ -1681,17 +1551,7 @@ EventHandler.on(document, EVENT_CLICK_DATA_API$4, SELECTOR_DATA_TOGGLE$4, functi
 
 defineJQueryPlugin(Collapse);
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap dropdown.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
 
-
-/**
- * Constants
- */
 
 const NAME$a = 'dropdown';
 const DATA_KEY$6 = 'bs.dropdown';
@@ -1789,10 +1649,7 @@ class Dropdown extends BaseComponent {
     }
     this._createPopper();
 
-    // If this is a touch-enabled device we add extra
-    // empty mouseover listeners to the body's immediate children;
-    // only needed because of broken event delegation on iOS
-    // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
+    
     if ('ontouchstart' in document.documentElement && !this._parent.closest(SELECTOR_NAVBAR_NAV)) {
       for (const element of [].concat(...document.body.children)) {
         EventHandler.on(element, 'mouseover', noop);
@@ -2012,7 +1869,7 @@ class Dropdown extends BaseComponent {
     }
     event.preventDefault();
 
-    // TODO: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.3/forms/input-group/
+    
     const getToggleButton = this.matches(SELECTOR_DATA_TOGGLE$3) ? this : SelectorEngine.prev(this, SELECTOR_DATA_TOGGLE$3)[0] || SelectorEngine.next(this, SELECTOR_DATA_TOGGLE$3)[0] || SelectorEngine.findOne(SELECTOR_DATA_TOGGLE$3, event.delegateTarget.parentNode);
     const instance = Dropdown.getOrCreateInstance(getToggleButton);
     if (isUpOrDownEvent) {
@@ -2030,9 +1887,7 @@ class Dropdown extends BaseComponent {
   }
 }
 
-/**
- * Data API implementation
- */
+
 
 EventHandler.on(document, EVENT_KEYDOWN_DATA_API, SELECTOR_DATA_TOGGLE$3, Dropdown.dataApiKeydownHandler);
 EventHandler.on(document, EVENT_KEYDOWN_DATA_API, SELECTOR_MENU, Dropdown.dataApiKeydownHandler);
@@ -2174,17 +2029,7 @@ class Backdrop extends Config {
   }
 }
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap util/focustrap.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
 
-
-/**
- * Constants
- */
 
 const NAME$8 = 'focustrap';
 const DATA_KEY$5 = 'bs.focustrap';
@@ -2273,17 +2118,7 @@ class FocusTrap extends Config {
   }
 }
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap util/scrollBar.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
 
-
-/**
- * Constants
- */
 
 const SELECTOR_FIXED_CONTENT = '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top';
 const SELECTOR_STICKY_CONTENT = '.sticky-top';
@@ -2301,7 +2136,7 @@ class ScrollBarHelper {
 
   // Public
   getWidth() {
-    // https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth#usage_notes
+   
     const documentWidth = document.documentElement.clientWidth;
     return Math.abs(window.innerWidth - documentWidth);
   }
@@ -2371,17 +2206,7 @@ class ScrollBarHelper {
   }
 }
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap modal.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
 
-
-/**
- * Constants
- */
 
 const NAME$7 = 'modal';
 const DATA_KEY$4 = 'bs.modal';
@@ -2676,17 +2501,7 @@ enableDismissTrigger(Modal);
 
 defineJQueryPlugin(Modal);
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap offcanvas.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
 
-
-/**
- * Constants
- */
 
 const NAME$6 = 'offcanvas';
 const DATA_KEY$3 = 'bs.offcanvas';
@@ -2907,14 +2722,7 @@ enableDismissTrigger(Offcanvas);
 
 defineJQueryPlugin(Offcanvas);
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap util/sanitizer.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
 
-// js-docs-start allow-list
 const ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i;
 const DefaultAllowlist = {
   // Global attributes allowed on any supplied element below.
@@ -2953,13 +2761,7 @@ const DefaultAllowlist = {
 
 const uriAttributes = new Set(['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href']);
 
-/**
- * A pattern that recognizes URLs that are safe wrt. XSS in URL navigation
- * contexts.
- *
- * Shout-out to Angular https://github.com/angular/angular/blob/15.2.8/packages/core/src/sanitization/url_sanitizer.ts#L38
- */
-// eslint-disable-next-line unicorn/better-regex
+
 const SAFE_URL_PATTERN = /^(?!javascript:)(?:[a-z0-9+.-]+:|[^&:/?#]*(?:[/?#]|$))/i;
 const allowedAttribute = (attribute, allowedAttributeList) => {
   const attributeName = attribute.nodeName.toLowerCase();
@@ -3000,17 +2802,7 @@ function sanitizeHtml(unsafeHtml, allowList, sanitizeFunction) {
   return createdDocument.body.innerHTML;
 }
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap util/template-factory.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
 
-
-/**
- * Constants
- */
 
 const NAME$5 = 'TemplateFactory';
 const Default$4 = {
@@ -3136,17 +2928,7 @@ class TemplateFactory extends Config {
   }
 }
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap tooltip.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
 
-
-/**
- * Constants
- */
 
 const NAME$4 = 'tooltip';
 const DISALLOWED_ATTRIBUTES = new Set(['sanitize', 'allowList', 'sanitizeFn']);
@@ -3313,10 +3095,7 @@ class Tooltip extends BaseComponent {
     this._popper = this._createPopper(tip);
     tip.classList.add(CLASS_NAME_SHOW$2);
 
-    // If this is a touch-enabled device we add extra
-    // empty mouseover listeners to the body's immediate children;
-    // only needed because of broken event delegation on iOS
-    // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
+    
     if ('ontouchstart' in document.documentElement) {
       for (const element of [].concat(...document.body.children)) {
         EventHandler.on(element, 'mouseover', noop);
@@ -3648,17 +3427,7 @@ class Tooltip extends BaseComponent {
 
 defineJQueryPlugin(Tooltip);
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap popover.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
 
-
-/**
- * Constants
- */
 
 const NAME$3 = 'popover';
 const SELECTOR_TITLE = '.popover-header';
@@ -3729,17 +3498,7 @@ class Popover extends Tooltip {
 
 defineJQueryPlugin(Popover);
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap scrollspy.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
 
-
-/**
- * Constants
- */
 
 const NAME$2 = 'scrollspy';
 const DATA_KEY$2 = 'bs.scrollspy';
@@ -3989,17 +3748,6 @@ EventHandler.on(window, EVENT_LOAD_DATA_API$1, () => {
 
 defineJQueryPlugin(ScrollSpy);
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap tab.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
-
-
-/**
- * Constants
- */
 
 const NAME$1 = 'tab';
 const DATA_KEY$1 = 'bs.tab';
@@ -4259,17 +4007,7 @@ EventHandler.on(window, EVENT_LOAD_DATA_API, () => {
 
 defineJQueryPlugin(Tab);
 
-/**
- * --------------------------------------------------------------------------
- * Bootstrap toast.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
 
-
-/**
- * Constants
- */
 
 const NAME = 'toast';
 const DATA_KEY = 'bs.toast';
@@ -4431,17 +4169,13 @@ class Toast extends BaseComponent {
   }
 }
 
-/**
- * Data API implementation
- */
+
 
 enableDismissTrigger(Toast);
 
-/**
- * jQuery
- */
+
 
 defineJQueryPlugin(Toast);
 
 export { Alert, Button, Carousel, Collapse, Dropdown, Modal, Offcanvas, Popover, ScrollSpy, Tab, Toast, Tooltip };
-//# sourceMappingURL=bootstrap.esm.js.map
+
